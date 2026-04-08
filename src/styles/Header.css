@@ -32,3 +32,40 @@
     font-size: 1rem;
   }
 }
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-icon-btn {
+  position: relative;          /* For badge positioning */
+  background: none;            /* Remove default button styles */
+  border: none;
+  font-size: 2rem;             /* Large emoji size */
+  cursor: pointer;
+  color: #333;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.cart-icon-btn:hover {
+  transform: scale(1.1);
+  color: #667eea;              /* Purple hover effect */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4757;         /* Bright red background */
+  color: white;
+  border-radius: 50%;          /* Circle */
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

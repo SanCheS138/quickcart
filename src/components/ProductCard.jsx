@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/ProductCard.css';
 
-function ProductCard({ product }) {
+function ProductCard({ product, onAddToCart }) {  // ← Add onAddToCart prop
   return (
     <div className="product-card">
       <div className="product-image-container">
@@ -18,6 +18,14 @@ function ProductCard({ product }) {
           <span className="product-price">${product.price}</span>
           <span className="product-category">{product.category}</span>
         </div>
+        
+        {/* Add button here */}
+        <button 
+          className="add-to-cart-btn"
+          onClick={() => onAddToCart(product)}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
