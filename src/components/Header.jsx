@@ -1,23 +1,46 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; 
 import '../styles/Header.css';
 
-function Header({ cartItemCount, onCartClick }) {  // ← Add props
+function Header({ searchTerm, onSearchChange }) {
+  const { getTotalItems, toggleCart } = useCart(); 
+
   return (
     <header className="header">
       <div className="header-container">
-        <div className="header-content">
-          <div className="header-text">
+        <div className="header-top">
+          <Link to="/" className="header-logo">
             <h1 className="header-title">🛒 QuickCart</h1>
-            <p className="header-subtitle">Your one-stop shop for everything</p>
-          </div>
-          
-          {/* Cart button */}
-          <button className="cart-icon-btn" onClick={onCartClick}>
+          </Link>
+
+          {/* Cart button now uses context */}
+          <button className="cart-icon-btn" onClick={toggleCart}>
             🛒
-            {cartItemCount > 0 && (
-              <span className="cart-badge">{cartItemCount}</span>
+            {getTotalItems() > 0 && (
+              <span className="cart-badge">{getTotalItems()}</span>
             )}
           </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="header-nav">
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/category/Electronics" className="nav-link">Electronics</Link>
+          <Link to="/category/Accessories" className="nav-link">Accessories</Link>
+          <Link to="/category/Home" className="nav-link">Home</Link>
+          <Link to="/category/Sports" className="nav-link">Sports</Link>
+          <Link to="/cart" className="nav-link">Cart</Link>
+        </nav>
+
+        {/* Search bar */}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="search-input"
+          />
         </div>
       </div>
     </header>
